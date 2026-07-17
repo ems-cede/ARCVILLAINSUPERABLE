@@ -127,22 +127,28 @@ document.addEventListener('DOMContentLoaded', () => {
         const email = document.getElementById('form-email').value;
         const message = document.getElementById('form-message').value;
 
-        // Aquí se simula el envío. En producción, se enviaría a una API.
-        // Mostramos un efecto de carga en el botón
         const submitBtn = contactForm.querySelector('.submit-btn');
         const originalText = submitBtn.textContent;
         submitBtn.disabled = true;
-        submitBtn.innerHTML = '<i class="fa-solid fa-circle-notch fa-spin"></i> Enviando...';
+        submitBtn.innerHTML = '<i class="fa-solid fa-circle-notch fa-spin"></i> Conectando...';
+
+        // Generar texto con formato para enviar a WhatsApp
+        const formattedText = `Hola Subdelegación! Mi nombre es *${name}* (${email}).\n\n*Mensaje:* ${message}`;
+        const whatsappUrl = `https://wa.me/5491164003520?text=${encodeURIComponent(formattedText)}`;
 
         setTimeout(() => {
-            showToast(`¡Gracias ${name}! Tu mensaje fue enviado.`, 'fa-circle-check');
+            showToast(`¡Redirigiendo a WhatsApp, ${name}!`, 'fa-circle-check');
+            
+            // Abrir enlace de WhatsApp
+            window.open(whatsappUrl, '_blank');
+            
             contactForm.reset();
             closeModal();
             
             // Restaurar botón
             submitBtn.disabled = false;
             submitBtn.textContent = originalText;
-        }, 1500);
+        }, 1000);
     });
 
     // --- SISTEMA DE TOAST NOTIFICATIONS ---
