@@ -349,6 +349,179 @@ body {
 }
 
 /* ==========================================================================
+   Sección Eventos Destacados
+   ========================================================================== */
+.eventos-section {
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    padding-top: 25px;
+    margin-top: 10px;
+    width: 100%;
+}
+
+.eventos-title {
+    font-family: 'Outfit', sans-serif;
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 10px;
+    text-align: left;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.eventos-title i {
+    color: var(--accent-gold);
+}
+
+.eventos-description {
+    font-size: 0.88rem;
+    line-height: 1.6;
+    color: var(--text-secondary);
+    margin-bottom: 24px;
+    text-align: left;
+}
+
+.eventos-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.evento-card {
+    position: relative;
+    padding: 22px;
+    border-radius: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    background: rgba(255, 255, 255, 0.03);
+    color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+    text-align: left;
+    transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1), 
+                box-shadow 0.4s ease, 
+                border-color 0.4s ease, 
+                background-color 0.4s ease;
+}
+
+.evento-card h3 {
+    font-family: 'Outfit', sans-serif;
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: #ffffff;
+    margin: 0;
+}
+
+.evento-card p {
+    font-size: 0.85rem;
+    line-height: 1.5;
+    color: var(--text-secondary);
+    margin: 0;
+}
+
+/* Badges con icono */
+.evento-icon-badge {
+    width: 38px;
+    height: 38px;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.1rem;
+    transition: var(--transition-smooth);
+}
+
+/* Brillos / Iluminaciones específicas de tarjetas */
+.card-glow-blue {
+    border-color: rgba(0, 168, 204, 0.25);
+    box-shadow: 0 4px 15px rgba(0, 168, 204, 0.05),
+                inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+.card-glow-blue .evento-icon-badge {
+    background: rgba(0, 168, 204, 0.1);
+    color: #00a8cc;
+    border: 1px solid rgba(0, 168, 204, 0.2);
+}
+
+.card-glow-blue:hover {
+    background: rgba(0, 168, 204, 0.05);
+    border-color: #00a8cc;
+    box-shadow: 0 10px 25px rgba(0, 168, 204, 0.3),
+                inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+.card-glow-gold {
+    border-color: rgba(242, 184, 7, 0.25);
+    box-shadow: 0 4px 15px rgba(242, 184, 7, 0.05),
+                inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+.card-glow-gold .evento-icon-badge {
+    background: rgba(242, 184, 7, 0.1);
+    color: var(--accent-gold);
+    border: 1px solid rgba(242, 184, 7, 0.2);
+}
+
+.card-glow-gold:hover {
+    background: rgba(242, 184, 7, 0.05);
+    border-color: var(--accent-gold);
+    box-shadow: 0 10px 25px rgba(242, 184, 7, 0.3),
+                inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+/* Efectos hovers de badges */
+.evento-card:hover .evento-icon-badge {
+    transform: scale(1.1) rotate(5deg);
+}
+
+.evento-card:hover {
+    transform: translateY(-5px) scale(1.01);
+}
+
+/* Animaciones de flotación asíncronas para llamar la atención */
+.float-anim-1 {
+    animation: floatAnim1 5s ease-in-out infinite alternate;
+}
+
+.float-anim-2 {
+    animation: floatAnim2 6s ease-in-out infinite alternate;
+}
+
+.float-anim-3 {
+    animation: floatAnim3 5.5s ease-in-out infinite alternate;
+}
+
+@keyframes floatAnim1 {
+    0% {
+        transform: translateY(0);
+    }
+    100% {
+        transform: translateY(-4px);
+    }
+}
+
+@keyframes floatAnim2 {
+    0% {
+        transform: translateY(-2px);
+    }
+    100% {
+        transform: translateY(2px);
+    }
+}
+
+@keyframes floatAnim3 {
+    0% {
+        transform: translateY(-4px);
+    }
+    100% {
+        transform: translateY(0px);
+    }
+}
+
+/* ==========================================================================
    Botones de Acción Rápida (Compartir, Contacto)
    ========================================================================== */
 .action-buttons-group {
