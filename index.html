@@ -313,6 +313,13 @@
             </button>
         </div>
 
+        <!-- Enlace al Municipio de La Matanza -->
+        <div class="municipio-link-container">
+            <a href="https://www.instagram.com/municipiodelamatanza/" target="_blank" rel="noopener noreferrer" class="municipio-btn">
+                <i class="fa-brands fa-instagram"></i> Municipio de La Matanza
+            </a>
+        </div>
+
         <!-- Footer -->
         <footer class="portfolio-footer" id="footer-section">
             <p>&copy; 2026 ARC VILLA INSUPERABLE. Todos los derechos reservados.</p>
@@ -413,10 +420,63 @@
         </button>
     </div>
 
+    <!-- Burbuja Flotante del Bot de IA (CompañerIA) -->
+    <div class="bot-container">
+        <!-- Burbuja -->
+        <button class="bot-bubble" id="bot-bubble-btn" aria-label="Abrir asistente de IA">
+            <span class="bot-badge">Aprender más 🤖</span>
+            <div class="bot-icon">
+                <i class="fa-solid fa-robot"></i>
+            </div>
+        </button>
+
+        <!-- Ventana de Chat -->
+        <div class="bot-chat-window" id="bot-chat-window">
+            <div class="bot-chat-header">
+                <div class="bot-chat-title-group">
+                    <div class="bot-chat-avatar">
+                        <i class="fa-solid fa-robot"></i>
+                    </div>
+                    <div>
+                        <h3 class="bot-chat-name">CompañerIA</h3>
+                        <span class="bot-chat-status">Asistente ARC Virtual</span>
+                    </div>
+                </div>
+                <button class="bot-chat-close-btn" id="btn-bot-chat-close" aria-label="Cerrar chat">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+            
+            <div class="bot-chat-body" id="bot-chat-body">
+                <div class="chat-message bot-msg">
+                    <p>¡Hola! Soy <strong>CompañerIA</strong> 🤖, el asistente interactivo de ARC Villa Insuperable.</p>
+                </div>
+                <div class="chat-message bot-msg">
+                    <p>Hacé clic en alguno de los temas sugeridos para aprender sobre nuestra historia y comunidad, o escribí tu pregunta:</p>
+                </div>
+                
+                <!-- Botones de sugerencias directas -->
+                <div class="bot-suggestions" id="bot-suggestions">
+                    <button class="suggestion-btn" onclick="sendSuggestion('peronismo')">📖 Historia del Peronismo</button>
+                    <button class="suggestion-btn" onclick="sendSuggestion('malvinas')">🇦🇷 Soberanía Malvinas</button>
+                    <button class="suggestion-btn" onclick="sendSuggestion('matanza')">🏢 La Matanza y Fernando Espinoza</button>
+                    <button class="suggestion-btn" onclick="sendSuggestion('arc')">👥 ¿Qué es ARC?</button>
+                </div>
+            </div>
+            
+            <form class="bot-chat-input-area" id="bot-chat-form">
+                <input type="text" id="bot-chat-input" placeholder="Escribí tu pregunta..." required autocomplete="off">
+                <button type="submit" class="bot-send-btn" aria-label="Enviar mensaje">
+                    <i class="fa-solid fa-paper-plane"></i>
+                </button>
+            </form>
+        </div>
+    </div>
+
     <!-- Notificaciones Toast flotantes -->
     <div class="toast-container" id="toast-container"></div>
 
     <!-- Scripts de funcionalidad -->
-    <script src="script.js?v=10"></script>
+    <script src="script.js?v=11"></script>
 </body>
 </html>

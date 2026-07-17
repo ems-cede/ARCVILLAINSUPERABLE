@@ -112,6 +112,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (e.key === 'Escape') {
             if (contactModal.classList.contains('active')) closeModal();
             if (shareModal.classList.contains('active')) closeShareModal();
+            if (typeof botChatWindow !== 'undefined' && botChatWindow.classList.contains('active')) closeChatWindow();
         }
     });
 
@@ -205,5 +206,188 @@ document.addEventListener('DOMContentLoaded', () => {
             if (e.key === 'Escape') window.closeLightbox();
         }
     });
+
+    // --- SISTEMA DE CHAT BOT (CompañerIA) ---
+    const botBubbleBtn = document.getElementById('bot-bubble-btn');
+    const botChatWindow = document.getElementById('bot-chat-window');
+    const btnBotChatClose = document.getElementById('btn-bot-chat-close');
+    const botChatBody = document.getElementById('bot-chat-body');
+    const botChatForm = document.getElementById('bot-chat-form');
+    const botChatInput = document.getElementById('bot-chat-input');
+
+    // Respuestas predefinidas
+    const responses = {
+        peronismo: `
+            <p><strong>El Peronismo (Justicialismo)</strong> es un movimiento político de base popular fundado en Argentina a mediados de la década de 1940 por <strong>Juan Domingo Perón</strong> junto al liderazgo social de <strong>Eva Perón (Evita)</strong>.</p>
+            <p>Se fundamenta en tres banderas históricas principales:</p>
+            <ul>
+                <li><strong>Justicia Social:</strong> Dignificación de los trabajadores, redistribución de la riqueza y ampliación de derechos sociales.</li>
+                <li><strong>Independencia Económica:</strong> Desarrollo de la industria nacional y soberanía sobre los recursos propios.</li>
+                <li><strong>Soberanía Política:</strong> Toma de decisiones autónomas sin subordinarse a potencias extranjeras.</li>
+            </ul>
+            <p>Bajo sus primeros gobiernos se consiguieron hitos históricos como el voto femenino (1947), los derechos del trabajador, la gratuidad de las universidades públicas y la creación de miles de escuelas y hospitales. En ARC Villa Insuperable militamos con estos valores en nuestro corazón y nuestro día a día.</p>
+        `,
+        malvinas: `
+            <p><strong>Las Islas Malvinas, Georgias del Sur y Sandwich del Sur</strong>, junto con sus espacios marítimos circundantes, son parte integrante del territorio nacional de la República Argentina.</p>
+            <p>La usurpación británica de 1833 inició un reclamo diplomático ininterrumpido. El sentimiento de soberanía se consolidó definitivamente tras el conflicto armado de 1982, donde cientos de jóvenes valientes dieron su vida defendiendo nuestra bandera.</p>
+            <p>Desde el barrio afirmamos: <em>"Las Malvinas son y serán argentinas"</em>. Mantener viva la memoria de los héroes y veteranos no es negociable; es un acto de amor por la patria y un pilar fundamental de nuestra soberanía nacional.</p>
+        `,
+        matanza: `
+            <p><strong>La Matanza</strong> es el municipio más poblado de la Provincia de Buenos Aires y es cuna de una fuerte organización popular y militancia justicialista. Nuestro intendente actual es <strong>Fernando Espinoza</strong>.</p>
+            <p>Te invitamos a enterarte de los programas de salud, educación y obras públicas del Municipio y de la gestión a través de sus canales oficiales:</p>
+            <ul>
+                <li><a href="https://www.instagram.com/municipiodelamatanza/" target="_blank" rel="noopener noreferrer" style="color:var(--accent-gold); font-weight:600; text-decoration: underline;"><i class="fa-brands fa-instagram"></i> Instagram del Municipio</a></li>
+                <li><a href="https://www.facebook.com/FerEspinozaOK" target="_blank" rel="noopener noreferrer" style="color:var(--accent-gold); font-weight:600; text-decoration: underline;"><i class="fa-brands fa-facebook-f"></i> Facebook de Fernando Espinoza</a></li>
+            </ul>
+            <p>La gestión del municipio trabaja junto a la comunidad de Villa Insuperable para mejorar la vida de los vecinos a través de operativos de salud, apoyo escolar y fomento al trabajo local.</p>
+        `,
+        arc: `
+            <p><strong>ARC Villa Insuperable</strong> es una agrupación y espacio político vecinal de base que nació en el barrio de Villa Insuperable, La Matanza.</p>
+            <p>Nos organizamos en base a tres pilares fundamentales:</p>
+            <ul>
+                <li><strong>Organización Popular:</strong> Construimos desde abajo, escuchando al vecino y sumando voluntades para transformar la realidad.</li>
+                <li><strong>Fidelidad:</strong> Compromiso real y constante con nuestra comunidad y con los valores de la patria.</li>
+                <li><strong>Transformación:</strong> Entendemos la política como una herramienta noble y activa para cambiar la vida de la gente de nuestro barrio.</li>
+            </ul>
+            <p>Queremos que seas parte activa del cambio. ¡Sumate a militar o a participar en nuestros encuentros vecinales!</p>
+        `
+    };
+
+    // Abrir y Cerrar Chat
+    botBubbleBtn.addEventListener('click', () => {
+        botChatWindow.classList.add('active');
+        botBubbleBtn.classList.add('hidden');
+        scrollToBottom();
+    });
+
+    btnBotChatClose.addEventListener('click', closeChatWindow);
+
+    function closeChatWindow() {
+        botChatWindow.classList.remove('active');
+        botBubbleBtn.classList.remove('hidden');
+    }
+
+    // Función global para sugerencias
+    window.sendSuggestion = (topic) => {
+        // Remover sugerencias anteriores para limpiar el chat
+        const suggestionsContainer = document.getElementById('bot-suggestions');
+        if (suggestionsContainer) suggestionsContainer.remove();
+
+        // Agregar mensaje de usuario
+        const topicTitles = {
+            peronismo: "📖 Historia del Peronismo",
+            malvinas: "🇦🇷 Soberanía Malvinas",
+            matanza: "🏢 La Matanza y Fernando Espinoza",
+            arc: "👥 ¿Qué es ARC?"
+        };
+        appendMessage(topicTitles[topic] || topic, 'user-msg');
+        
+        // Simular escritura de la IA
+        showTypingIndicator();
+
+        setTimeout(() => {
+            removeTypingIndicator();
+            appendMessage(responses[topic], 'bot-msg');
+            appendSuggestions();
+        }, 1000);
+    };
+
+    // Enviar mensaje por formulario
+    botChatForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const query = botChatInput.value.trim();
+        if (!query) return;
+
+        botChatInput.value = '';
+        
+        // Remover sugerencias
+        const suggestionsContainer = document.getElementById('bot-suggestions');
+        if (suggestionsContainer) suggestionsContainer.remove();
+
+        appendMessage(query, 'user-msg');
+        showTypingIndicator();
+
+        setTimeout(() => {
+            removeTypingIndicator();
+            const reply = processQuery(query);
+            appendMessage(reply, 'bot-msg');
+            appendSuggestions();
+        }, 1200);
+    });
+
+    // Procesador básico de consultas (keyword matching)
+    function processQuery(query) {
+        const text = query.toLowerCase();
+
+        if (text.includes('peron') || text.includes('evita') || text.includes('justicia') || text.includes('peronismo') || text.includes('justicial')) {
+            return responses.peronismo;
+        }
+        if (text.includes('malvina') || text.includes('isla') || text.includes('soberan') || text.includes('soldado') || text.includes('veteran') || text.includes('guerra')) {
+            return responses.malvinas;
+        }
+        if (text.includes('matanza') || text.includes('espinoza') || text.includes('intendente') || text.includes('fernando') || text.includes('municipio')) {
+            return responses.matanza;
+        }
+        if (text.includes('arc') || text.includes('villa') || text.includes('insuperable') || text.includes('quienes') || text.includes('pilar') || text.includes('mision')) {
+            return responses.arc;
+        }
+        if (text.includes('hola') || text.includes('buen') || text.includes('saludo')) {
+            return `<p>¡Hola compañero/a! ¿En qué te puedo ayudar hoy? Podés consultarme sobre el Peronismo, las Islas Malvinas, nuestro municipio de La Matanza o sobre ARC.</p>`;
+        }
+        if (text.includes('gracia') || text.includes('chau') || text.includes('adios') || text.includes('gracias')) {
+            return `<p>¡Gracias a vos! Recordá que defender lo nuestro y organizarnos empieza por cada uno de nosotros. ¡Abrazo peronista! ✌️</p>`;
+        }
+
+        // Fallback
+        return `
+            <p>No estoy seguro de haber entendido tu consulta. 🤖</p>
+            <p>Probá escribiendo palabras clave como <strong>"peronismo"</strong>, <strong>"malvinas"</strong>, <strong>"la matanza"</strong> o <strong>"arc"</strong>, o elegí uno de los accesos sugeridos abajo:</p>
+        `;
+    }
+
+    // Auxiliares de interfaz
+    function appendMessage(htmlContent, className) {
+        const msgDiv = document.createElement('div');
+        msgDiv.className = `chat-message ${className}`;
+        msgDiv.innerHTML = htmlContent;
+        botChatBody.appendChild(msgDiv);
+        scrollToBottom();
+    }
+
+    function showTypingIndicator() {
+        const indicatorDiv = document.createElement('div');
+        indicatorDiv.className = 'chat-message bot-msg typing-indicator';
+        indicatorDiv.id = 'bot-typing-indicator';
+        indicatorDiv.innerHTML = `
+            <span class="dot"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
+        `;
+        botChatBody.appendChild(indicatorDiv);
+        scrollToBottom();
+    }
+
+    function removeTypingIndicator() {
+        const indicator = document.getElementById('bot-typing-indicator');
+        if (indicator) indicator.remove();
+    }
+
+    function appendSuggestions() {
+        const sugDiv = document.createElement('div');
+        sugDiv.className = 'bot-suggestions';
+        sugDiv.id = 'bot-suggestions';
+        sugDiv.innerHTML = `
+            <button class="suggestion-btn" onclick="sendSuggestion('peronismo')">📖 Historia del Peronismo</button>
+            <button class="suggestion-btn" onclick="sendSuggestion('malvinas')">🇦🇷 Soberanía Malvinas</button>
+            <button class="suggestion-btn" onclick="sendSuggestion('matanza')">🏢 La Matanza y Fernando Espinoza</button>
+            <button class="suggestion-btn" onclick="sendSuggestion('arc')">👥 ¿Qué es ARC?</button>
+        `;
+        botChatBody.appendChild(sugDiv);
+        scrollToBottom();
+    }
+
+    function scrollToBottom() {
+        botChatBody.scrollTop = botChatBody.scrollHeight;
+    }
 
 });
