@@ -2036,6 +2036,7 @@ body {
     }
     
     .portfolio-container {
+        grid-column: 2;
         margin-left: 0;
     }
 }
