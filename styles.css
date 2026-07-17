@@ -303,6 +303,12 @@ body {
     box-shadow: 0 4px 15px rgba(255, 255, 255, 0.05);
 }
 
+.x-bg {
+    background: #010101;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    box-shadow: 0 4px 15px rgba(255, 255, 255, 0.08);
+}
+
 /* Info del enlace */
 .link-info {
     flex-grow: 1;
