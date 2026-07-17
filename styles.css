@@ -2202,69 +2202,57 @@ body {
         transform: translateX(4px);
     }
 
-    /* Fondo personalizado para móviles: Luces Nocturnas de Villa Insuperable */
+    /* Fondo personalizado para móviles: Oro Viejo Líquido */
+    body {
+        background: linear-gradient(135deg, #44340a 0%, #100c02 100%) !important;
+    }
+
     .bg-blobs {
-        filter: blur(40px);
+        filter: blur(100px);
     }
 
     .blob {
-        opacity: 0.25;
+        opacity: 0.35;
     }
 
     .blob-1 {
-        top: 15%;
-        left: 10%;
-        width: 120px;
-        height: 120px;
-        background: radial-gradient(circle, rgba(0, 168, 204, 0.7) 0%, transparent 80%);
-        animation: pulseLightMobile1 7s infinite alternate ease-in-out;
+        top: 10%;
+        left: -10%;
+        width: 60vw;
+        height: 60vw;
+        background: radial-gradient(circle, rgba(242, 184, 7, 0.28) 0%, transparent 70%);
+        animation: floatMobileGold 20s infinite alternate ease-in-out;
     }
 
     .blob-2 {
-        top: 50%;
-        right: 10%;
-        width: 100px;
-        height: 100px;
-        background: radial-gradient(circle, rgba(242, 184, 7, 0.6) 0%, transparent 80%);
-        animation: pulseLightMobile2 9s infinite alternate ease-in-out;
+        bottom: -10%;
+        right: -10%;
+        width: 70vw;
+        height: 70vw;
+        background: radial-gradient(circle, rgba(217, 160, 6, 0.22) 0%, transparent 70%);
+        animation: floatMobileGold 25s infinite alternate ease-in-out;
+        animation-delay: -5s;
     }
 
     .blob-3 {
-        top: 80%;
-        left: 15%;
-        width: 110px;
-        height: 110px;
-        background: radial-gradient(circle, rgba(0, 82, 204, 0.7) 0%, transparent 80%);
-        animation: pulseLightMobile1 8s infinite alternate ease-in-out;
+        top: 45%;
+        left: 20%;
+        width: 50vw;
+        height: 50vw;
+        background: radial-gradient(circle, rgba(140, 100, 5, 0.24) 0%, transparent 70%);
+        animation: floatMobileGold 18s infinite alternate ease-in-out;
+        animation-delay: -10s;
     }
 
-    @keyframes pulseLightMobile1 {
+    @keyframes floatMobileGold {
         0% {
-            transform: translate(0, 0) scale(1);
-            opacity: 0.15;
+            transform: translate(0, 0) scale(1) rotate(0deg);
         }
         50% {
-            transform: translate(15px, -15px) scale(1.2);
-            opacity: 0.35;
+            transform: translate(8%, 10%) scale(1.15) rotate(180deg);
         }
         100% {
-            transform: translate(-10px, 10px) scale(0.95);
-            opacity: 0.15;
-        }
-    }
-
-    @keyframes pulseLightMobile2 {
-        0% {
-            transform: translate(0, 0) scale(0.9);
-            opacity: 0.12;
-        }
-        50% {
-            transform: translate(-15px, 15px) scale(1.15);
-            opacity: 0.3;
-        }
-        100% {
-            transform: translate(10px, -10px) scale(0.95);
-            opacity: 0.12;
+            transform: translate(-5%, -8%) scale(0.9) rotate(360deg);
         }
     }
 }
