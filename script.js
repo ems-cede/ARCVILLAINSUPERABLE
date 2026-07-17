@@ -4,6 +4,9 @@
 
 document.addEventListener('DOMContentLoaded', () => {
     
+    // Iniciar efecto de lluvia de banderas
+    startFlagRain();
+
     // --- ELEMENTOS DEL DOM ---
     const btnShare = document.getElementById('btn-share');
     const btnContact = document.getElementById('btn-contact');
@@ -557,5 +560,40 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         }
     });
+
+    // --- EFECTO DE LLUVIA DE BANDERAS ARGENTINAS ---
+    function startFlagRain() {
+        const container = document.getElementById('flag-rain-container');
+        if (!container) return;
+
+        // Generar 40 banderas
+        const totalFlags = 45;
+        
+        for (let i = 0; i < totalFlags; i++) {
+            setTimeout(() => {
+                const flag = document.createElement('div');
+                flag.className = 'falling-flag';
+                flag.innerText = '🇦🇷';
+                
+                // Propiedades aleatorias
+                const randomLeft = Math.random() * 100; // Entre 0% y 100% de la pantalla
+                const randomDuration = 3.5 + Math.random() * 2.5; // Entre 3.5s y 6s
+                const randomScale = 0.6 + Math.random() * 0.7; // Escala
+                const randomRotation = Math.random() * 360; // Rotación inicial
+                
+                flag.style.left = `${randomLeft}%`;
+                flag.style.animationDuration = `${randomDuration}s`;
+                flag.style.transform = `scale(${randomScale}) rotate(${randomRotation}deg)`;
+                
+                container.appendChild(flag);
+                
+                // Eliminar después de que termine la animación
+                setTimeout(() => {
+                    flag.remove();
+                }, randomDuration * 1000);
+                
+            }, Math.random() * 3000); // Esparcido en un lapso de 3 segundos al entrar
+        }
+    }
 
 });
