@@ -1,0 +1,30 @@
+[
+  {
+    "title": "Operativo Territorial de Salud y Vacunación",
+    "description": "Atención médica general, pediatría, odontología y vacunación gratuita del calendario oficial en los stands móviles del municipio.",
+    "dayOfWeek": 3,
+    "time": "09:00 a 13:00 hs",
+    "location": "Plaza Distrital de Villa Insuperable"
+  },
+  {
+    "title": "Taller Vecinal de Apoyo Escolar",
+    "description": "Espacio de aprendizaje, tareas y lectura recreativa para chicos y chicas del nivel primario en nuestro espacio comunitario.",
+    "dayOfWeek": 5,
+    "time": "15:00 a 17:00 hs",
+    "location": "Sede ARC Villa Insuperable"
+  },
+  {
+    "title": "Jornada de Eco-Canje y Reciclaje",
+    "description": "Traé tus plásticos, cartones y vidrios limpios y canjealos por plantines o bolsas ecológicas para cuidar el medio ambiente entre todos.",
+    "dayOfWeek": 6,
+    "time": "10:00 a 14:00 hs",
+    "location": "Plaza Principal de Lomas del Mirador"
+  },
+  {
+    "title": "Feria de la Economía Popular y Emprendedores",
+    "description": "Venta de productos artesanales, panificados y verduras frescas directas del productor al vecino a precios accesibles.",
+    "dayOfWeek": 6,
+    "time": "16:00 a 20:00 hs",
+    "location": "Polideportivo Municipal de la zona"
+  }
+]

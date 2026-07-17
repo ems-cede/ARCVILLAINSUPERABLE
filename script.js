@@ -215,6 +215,88 @@ document.addEventListener('DOMContentLoaded', () => {
     const botChatForm = document.getElementById('bot-chat-form');
     const botChatInput = document.getElementById('bot-chat-input');
 
+    // Base de actividades municipal cargada dinámicamente
+    let municipalActivities = [];
+    fetch('activities.json')
+        .then(res => res.json())
+        .then(data => {
+            municipalActivities = data;
+        })
+        .catch(() => {
+            // Fallback local por seguridad
+            municipalActivities = [
+                {
+                    "title": "Operativo Territorial de Salud y Vacunación",
+                    "description": "Atención médica general, pediatría, odontología y vacunación gratuita del calendario oficial en los stands móviles del municipio.",
+                    "dayOfWeek": 3,
+                    "time": "09:00 a 13:00 hs",
+                    "location": "Plaza Distrital de Villa Insuperable"
+                },
+                {
+                    "title": "Taller Vecinal de Apoyo Escolar",
+                    "description": "Espacio de aprendizaje, tareas y lectura recreativa para chicos y chicas del nivel primario en nuestro espacio comunitario.",
+                    "dayOfWeek": 5,
+                    "time": "15:00 a 17:00 hs",
+                    "location": "Sede ARC Villa Insuperable"
+                },
+                {
+                    "title": "Jornada de Eco-Canje y Reciclaje",
+                    "description": "Traé tus plásticos, cartones y vidrios limpios y canjealos por plantines o bolsas ecológicas para cuidar el medio ambiente entre todos.",
+                    "dayOfWeek": 6,
+                    "time": "10:00 a 14:00 hs",
+                    "location": "Plaza Principal de Lomas del Mirador"
+                },
+                {
+                    "title": "Feria de la Economía Popular y Emprendedores",
+                    "description": "Venta de productos artesanales, panificados y verduras frescas directas del productor al vecino a precios accesibles.",
+                    "dayOfWeek": 6,
+                    "time": "16:00 a 20:00 hs",
+                    "location": "Polideportivo Municipal de la zona"
+                }
+            ];
+        });
+
+    // Calcular la fecha calendario del próximo día de la semana correspondiente
+    function getNextDateOfDay(dayOfWeek) {
+        const today = new Date();
+        const resultDate = new Date(today);
+        const currentDay = today.getDay(); // 0 es Domingo, 1 Lunes...
+        let daysToAdd = dayOfWeek - currentDay;
+        
+        if (daysToAdd <= 0) {
+            daysToAdd += 7; // Si el día ya pasó esta semana, se calcula para la siguiente
+        }
+        
+        resultDate.setDate(today.getDate() + daysToAdd);
+        const options = { weekday: 'long', day: 'numeric', month: 'long' };
+        let formatted = resultDate.toLocaleDateString('es-AR', options);
+        return formatted.charAt(0).toUpperCase() + formatted.slice(1);
+    }
+
+    // Formateador de Actividades HTML
+    function formatActivitiesHTML() {
+        if (!municipalActivities || municipalActivities.length === 0) {
+            return `<p>No hay actividades programadas por el momento. ¡Volvé a consultar pronto!</p>`;
+        }
+        let html = `<p><strong>Operativos y actividades programadas esta semana en La Matanza:</strong></p>`;
+        municipalActivities.forEach(act => {
+            const dateStr = getNextDateOfDay(act.dayOfWeek);
+            html += `
+                <div style="margin-bottom: 12px; padding: 12px; background: rgba(255,255,255,0.03); border-left: 3px solid #00a8cc; border-radius: 8px; font-family:'Outfit',sans-serif;">
+                    <h4 style="margin: 0 0 6px 0; color: #ffffff; font-size: 0.88rem; font-weight: 600;">${act.title}</h4>
+                    <p style="margin: 0 0 8px 0; font-size: 0.8rem; color: var(--text-secondary); line-height: 1.4;">${act.description}</p>
+                    <div style="font-size: 0.76rem; color: var(--accent-gold); display: flex; flex-direction: column; gap: 4px;">
+                        <span><i class="fa-solid fa-calendar-day"></i> <strong>Fecha:</strong> ${dateStr}</span>
+                        <span><i class="fa-solid fa-clock"></i> <strong>Horario:</strong> ${act.time}</span>
+                        <span><i class="fa-solid fa-location-dot"></i> <strong>Lugar:</strong> ${act.location}</span>
+                    </div>
+                </div>
+            `;
+        });
+        html += `<p style="font-size: 0.76rem; color: var(--text-secondary); margin-top: 5px;"><em>* Nota: Las fechas y días de los operativos son móviles y se actualizan dinámicamente de forma automática en base a la fecha de hoy.</em></p>`;
+        return html;
+    }
+
     // Respuestas predefinidas
     const responses = {
         peronismo: `
@@ -278,7 +360,8 @@ document.addEventListener('DOMContentLoaded', () => {
             peronismo: "📖 Historia del Peronismo",
             malvinas: "🇦🇷 Soberanía Malvinas",
             matanza: "🏢 La Matanza y Fernando Espinoza",
-            arc: "👥 ¿Qué es ARC?"
+            arc: "👥 ¿Qué es ARC?",
+            actividades: "📅 Actividades del Municipio"
         };
         appendMessage(topicTitles[topic] || topic, 'user-msg');
         
@@ -287,7 +370,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
         setTimeout(() => {
             removeTypingIndicator();
-            appendMessage(responses[topic], 'bot-msg');
+            if (topic === 'actividades') {
+                appendMessage(formatActivitiesHTML(), 'bot-msg');
+            } else {
+                appendMessage(responses[topic], 'bot-msg');
+            }
             appendSuggestions();
         }, 1000);
     };
@@ -319,6 +406,9 @@ document.addEventListener('DOMContentLoaded', () => {
     function processQuery(query) {
         const text = query.toLowerCase();
 
+        if (text.includes('actividad') || text.includes('evento') || text.includes('programa') || text.includes('noticia') || text.includes('calendario') || text.includes('operativo') || text.includes('taller') || text.includes('feria') || text.includes('cronograma')) {
+            return formatActivitiesHTML();
+        }
         if (text.includes('peron') || text.includes('evita') || text.includes('justicia') || text.includes('peronismo') || text.includes('justicial')) {
             return responses.peronismo;
         }
@@ -332,7 +422,7 @@ document.addEventListener('DOMContentLoaded', () => {
             return responses.arc;
         }
         if (text.includes('hola') || text.includes('buen') || text.includes('saludo')) {
-            return `<p>¡Hola compañero/a! ¿En qué te puedo ayudar hoy? Podés consultarme sobre el Peronismo, las Islas Malvinas, nuestro municipio de La Matanza o sobre ARC.</p>`;
+            return `<p>¡Hola compañero/a! ¿En qué te puedo ayudar hoy? Podés consultarme sobre las <strong>actividades del municipio</strong>, el <strong>Peronismo</strong>, las <strong>Islas Malvinas</strong>, nuestro municipio de <strong>La Matanza</strong> o sobre <strong>ARC</strong>.</p>`;
         }
         if (text.includes('gracia') || text.includes('chau') || text.includes('adios') || text.includes('gracias')) {
             return `<p>¡Gracias a vos! Recordá que defender lo nuestro y organizarnos empieza por cada uno de nosotros. ¡Abrazo peronista! ✌️</p>`;
@@ -341,7 +431,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // Fallback
         return `
             <p>No estoy seguro de haber entendido tu consulta. 🤖</p>
-            <p>Probá escribiendo palabras clave como <strong>"peronismo"</strong>, <strong>"malvinas"</strong>, <strong>"la matanza"</strong> o <strong>"arc"</strong>, o elegí uno de los accesos sugeridos abajo:</p>
+            <p>Probá escribiendo palabras clave como <strong>"actividades"</strong>, <strong>"peronismo"</strong>, <strong>"malvinas"</strong> o <strong>"la matanza"</strong>, o elegí uno de los accesos sugeridos abajo:</p>
         `;
     }
 
@@ -354,6 +444,7 @@ document.addEventListener('DOMContentLoaded', () => {
         scrollToBottom();
     }
 
+    // Animación de escritura
     function showTypingIndicator() {
         const indicatorDiv = document.createElement('div');
         indicatorDiv.className = 'chat-message bot-msg typing-indicator';
@@ -372,6 +463,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (indicator) indicator.remove();
     }
 
+    // Añadir sugerencias dinámicamente al chat
     function appendSuggestions() {
         const sugDiv = document.createElement('div');
         sugDiv.className = 'bot-suggestions';
@@ -381,6 +473,7 @@ document.addEventListener('DOMContentLoaded', () => {
             <button class="suggestion-btn" onclick="sendSuggestion('malvinas')">🇦🇷 Soberanía Malvinas</button>
             <button class="suggestion-btn" onclick="sendSuggestion('matanza')">🏢 La Matanza y Fernando Espinoza</button>
             <button class="suggestion-btn" onclick="sendSuggestion('arc')">👥 ¿Qué es ARC?</button>
+            <button class="suggestion-btn" onclick="sendSuggestion('actividades')">📅 Actividades del Municipio</button>
         `;
         botChatBody.appendChild(sugDiv);
         scrollToBottom();
