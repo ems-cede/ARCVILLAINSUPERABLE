@@ -118,21 +118,4 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 3000);
     }
 
-    // --- EFECTO HOVER 3D (TILT) EN MÓVILES/DESKTOP ---
-    // Agrega un efecto interactivo sutil de inclinación en desktop
-    if (window.innerWidth > 768) {
-        document.addEventListener('mousemove', (e) => {
-            const x = e.clientX / window.innerWidth - 0.5;
-            const y = e.clientY / window.innerHeight - 0.5;
-            
-            // Mover sutilmente los blobs de fondo en dirección contraria
-            const blob1 = document.getElementById('blob1');
-            const blob2 = document.getElementById('blob2');
-            const blob3 = document.getElementById('blob3');
-            
-            if (blob1) blob1.style.transform = `translate(${x * 60}px, ${y * 60}px)`;
-            if (blob2) blob2.style.transform = `translate(${x * -40}px, ${y * -40}px)`;
-            if (blob3) blob3.style.transform = `translate(${x * 30}px, ${y * 30}px)`;
-        });
-    }
 });
