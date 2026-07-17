@@ -2201,6 +2201,72 @@ body {
     .nav-link:hover {
         transform: translateX(4px);
     }
+
+    /* Fondo personalizado para móviles: Luces Nocturnas de Villa Insuperable */
+    .bg-blobs {
+        filter: blur(40px);
+    }
+
+    .blob {
+        opacity: 0.25;
+    }
+
+    .blob-1 {
+        top: 15%;
+        left: 10%;
+        width: 120px;
+        height: 120px;
+        background: radial-gradient(circle, rgba(0, 168, 204, 0.7) 0%, transparent 80%);
+        animation: pulseLightMobile1 7s infinite alternate ease-in-out;
+    }
+
+    .blob-2 {
+        top: 50%;
+        right: 10%;
+        width: 100px;
+        height: 100px;
+        background: radial-gradient(circle, rgba(242, 184, 7, 0.6) 0%, transparent 80%);
+        animation: pulseLightMobile2 9s infinite alternate ease-in-out;
+    }
+
+    .blob-3 {
+        top: 80%;
+        left: 15%;
+        width: 110px;
+        height: 110px;
+        background: radial-gradient(circle, rgba(0, 82, 204, 0.7) 0%, transparent 80%);
+        animation: pulseLightMobile1 8s infinite alternate ease-in-out;
+    }
+
+    @keyframes pulseLightMobile1 {
+        0% {
+            transform: translate(0, 0) scale(1);
+            opacity: 0.15;
+        }
+        50% {
+            transform: translate(15px, -15px) scale(1.2);
+            opacity: 0.35;
+        }
+        100% {
+            transform: translate(-10px, 10px) scale(0.95);
+            opacity: 0.15;
+        }
+    }
+
+    @keyframes pulseLightMobile2 {
+        0% {
+            transform: translate(0, 0) scale(0.9);
+            opacity: 0.12;
+        }
+        50% {
+            transform: translate(-15px, 15px) scale(1.15);
+            opacity: 0.3;
+        }
+        100% {
+            transform: translate(10px, -10px) scale(0.95);
+            opacity: 0.12;
+        }
+    }
 }
 
 /* ==========================================================================
