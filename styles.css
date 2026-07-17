@@ -772,6 +772,72 @@ body {
     transform: translateY(-2px);
     box-shadow: 0 6px 20px rgba(0, 168, 204, 0.35);
 }
+
+/* Estilos del Modal de Compartir Temático con la Bandera Argentina (Franjas Laterales) */
+#share-modal .modal-card {
+    position: relative;
+    overflow: hidden;
+    padding-left: 44px;
+    padding-right: 44px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* Franja Celeste Izquierda con Borde de Oro */
+#share-modal .modal-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 14px;
+    height: 100%;
+    background: #74acdf; /* Celeste patrio */
+    border-right: 3px solid var(--accent-gold);
+    box-shadow: 3px 0 10px rgba(0, 0, 0, 0.4);
+    z-index: 1;
+}
+
+/* Franja Celeste Derecha con Borde de Oro */
+#share-modal .modal-card::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 14px;
+    height: 100%;
+    background: #74acdf; /* Celeste patrio */
+    border-left: 3px solid var(--accent-gold);
+    box-shadow: -3px 0 10px rgba(0, 0, 0, 0.4);
+    z-index: 1;
+}
+
+/* Marca de Agua Sol de Mayo */
+.modal-sun-bg {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 15rem;
+    color: rgba(242, 184, 7, 0.03);
+    pointer-events: none;
+    z-index: 0;
+    animation: rotateSun 45s linear infinite;
+}
+
+#share-modal .modal-title,
+#share-modal .modal-description,
+#share-modal .share-grid {
+    position: relative;
+    z-index: 2;
+}
+
+@keyframes rotateSun {
+    from {
+        transform: translate(-50%, -50%) rotate(0deg);
+    }
+    to {
+        transform: translate(-50%, -50%) rotate(360deg);
+    }
+}
 .modal-divider {
     border: 0;
     height: 1px;
