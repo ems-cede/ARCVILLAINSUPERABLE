@@ -606,6 +606,62 @@ body {
 }
 
 /* ==========================================================================
+   Sección Quiénes Somos (Tarjeta de Identidad Luminosa)
+   ========================================================================== */
+.about-section {
+    width: 100%;
+}
+
+.glow-card {
+    background: rgba(13, 27, 61, 0.25);
+    border: 1.5px solid rgba(0, 82, 204, 0.2);
+    border-radius: 20px;
+    padding: 24px;
+    text-align: left;
+    transition: var(--transition-smooth);
+    animation: cardGlow 4s infinite alternate ease-in-out;
+}
+
+@keyframes cardGlow {
+    0% {
+        box-shadow: 0 0 15px rgba(0, 82, 204, 0.15), inset 0 0 10px rgba(0, 82, 204, 0.08);
+        border-color: rgba(0, 82, 204, 0.25);
+    }
+    100% {
+        box-shadow: 0 0 25px rgba(0, 82, 204, 0.45), inset 0 0 15px rgba(0, 82, 204, 0.25);
+        border-color: rgba(0, 82, 204, 0.45);
+    }
+}
+
+.glow-card-badge {
+    display: inline-block;
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: var(--accent-gold);
+    margin-bottom: 8px;
+    background: rgba(242, 184, 7, 0.1);
+    padding: 4px 10px;
+    border-radius: 50px;
+    border: 1px solid rgba(242, 184, 7, 0.2);
+}
+
+.glow-card-title {
+    font-family: 'Outfit', sans-serif;
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 12px;
+}
+
+.glow-card-text {
+    font-size: 0.9rem;
+    line-height: 1.6;
+    color: var(--text-secondary);
+}
+
+/* ==========================================================================
    Sección de Homenaje a Malvinas
    ========================================================================== */
 .malvinas-section {
