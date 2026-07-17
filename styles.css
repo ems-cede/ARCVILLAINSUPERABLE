@@ -1979,6 +1979,25 @@ body {
     border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 }
 
+.sidebar-close-btn {
+    display: none;
+    background: none;
+    border: none;
+    color: var(--text-secondary);
+    font-size: 1.25rem;
+    cursor: pointer;
+    padding: 4px;
+    transition: var(--transition-smooth);
+    margin-left: auto;
+    justify-content: center;
+    align-items: center;
+}
+
+.sidebar-close-btn:hover {
+    color: var(--accent-gold);
+    transform: scale(1.1);
+}
+
 .sidebar-logo {
     width: 44px;
     height: 44px;
@@ -2111,22 +2130,7 @@ body {
     }
     
     .sidebar-overlay {
-        display: block;
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100vw;
-        height: 100vh;
-        background: rgba(2, 6, 23, 0.7);
-        z-index: 2050;
-        opacity: 0;
-        pointer-events: none;
-        transition: var(--transition-smooth);
-    }
-    
-    .sidebar-overlay.active {
-        opacity: 1;
-        pointer-events: auto;
+        display: none !important;
     }
     
     .page-layout-wrapper {
@@ -2160,6 +2164,11 @@ body {
         padding-bottom: 20px;
         border-bottom: 1px solid rgba(255, 255, 255, 0.08);
         gap: 12px;
+        align-items: center;
+    }
+    
+    .sidebar-close-btn {
+        display: flex;
     }
     
     .sidebar-logo {

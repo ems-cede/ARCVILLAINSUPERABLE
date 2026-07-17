@@ -493,15 +493,17 @@ document.addEventListener('DOMContentLoaded', () => {
     const navLinks = document.querySelectorAll('.nav-link');
     
     // Toggle menú móvil
-    if (mobileMenuToggle && stickySidebar && sidebarOverlay) {
+    const btnSidebarClose = document.getElementById('btn-sidebar-close');
+
+    if (mobileMenuToggle && stickySidebar) {
         mobileMenuToggle.addEventListener('click', () => {
             stickySidebar.classList.toggle('active');
-            sidebarOverlay.classList.toggle('active');
         });
-        
-        sidebarOverlay.addEventListener('click', () => {
+    }
+
+    if (btnSidebarClose && stickySidebar) {
+        btnSidebarClose.addEventListener('click', () => {
             stickySidebar.classList.remove('active');
-            sidebarOverlay.classList.remove('active');
         });
     }
     
@@ -509,9 +511,8 @@ document.addEventListener('DOMContentLoaded', () => {
     navLinks.forEach(link => {
         link.addEventListener('click', (e) => {
             // Cerrar menú móvil
-            if (stickySidebar && sidebarOverlay) {
+            if (stickySidebar) {
                 stickySidebar.classList.remove('active');
-                sidebarOverlay.classList.remove('active');
             }
             
             // Smooth Scroll manual con offset cómodo
@@ -520,10 +521,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (targetSection) {
                 e.preventDefault();
                 const offset = 30;
-                const bodyRect = document.body.getBoundingClientRect().top;
-                const elementRect = targetSection.getBoundingClientRect().top;
-                const elementPosition = elementRect - bodyRect;
-                const offsetPosition = elementPosition - offset;
+                const offsetPosition = getAbsoluteOffsetTop(targetSection) - offset;
                 
                 window.scrollTo({
                     top: offsetPosition,
@@ -600,6 +598,16 @@ document.addEventListener('DOMContentLoaded', () => {
                 
             }, Math.random() * 3000); // Esparcido en un lapso de 3 segundos al entrar
         }
+    }
+
+    // --- OBTENER OFFSET ABSOLUTO DEL ELEMENTO ---
+    function getAbsoluteOffsetTop(element) {
+        let top = 0;
+        while (element) {
+            top += element.offsetTop;
+            element = element.offsetParent;
+        }
+        return top;
     }
 
 });
