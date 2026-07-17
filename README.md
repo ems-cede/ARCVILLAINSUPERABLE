@@ -16,7 +16,7 @@
 Una vez dentro de tu cuenta de GitHub:
 1. En la esquina superior derecha, haz clic en el botón **`+`** y selecciona **New repository** (Nuevo repositorio).
 2. Completa los siguientes campos:
-   - **Repository name** (Nombre del repositorio): Escribe `portafolio` (o el nombre que prefieras, ej. `web`).
+   - **Repository name** (Nombre del repositorio): Escribe `ARCVILLAINSUPERABLE`.
    - **Public / Private**: Elige **Public** (Público). *Es obligatorio que sea público para que la web se pueda ver en Internet gratis.*
    - Deja todas las demás opciones como están.
 3. Haz clic en el botón verde al final que dice **Create repository** (Crear repositorio).
