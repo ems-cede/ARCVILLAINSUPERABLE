@@ -13,38 +13,77 @@ document.addEventListener('DOMContentLoaded', () => {
     const toastContainer = document.getElementById('toast-container');
     const mainContainer = document.getElementById('main-container');
 
-    // --- SISTEMA DE COMPARTIR ---
-    btnShare.addEventListener('click', async () => {
+    // --- SISTEMA DE COMPARTIR (MODAL) ---
+    const shareModal = document.getElementById('share-modal');
+    const btnShareModalClose = document.getElementById('btn-share-modal-close');
+    const shareWhatsapp = document.getElementById('share-whatsapp');
+    const shareFacebook = document.getElementById('share-facebook');
+    const shareTwitter = document.getElementById('share-twitter');
+    const shareCopy = document.getElementById('share-copy');
+    const shareNative = document.getElementById('share-native');
+
+    btnShare.addEventListener('click', () => {
+        const url = window.location.href;
+        const text = 'Mirá el portafolio oficial de ARC Villa Insuperable:';
+
+        // Configurar enlaces dinámicos
+        shareWhatsapp.href = `https://api.whatsapp.com/send?text=${encodeURIComponent(text + ' ' + url)}`;
+        shareFacebook.href = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`;
+        shareTwitter.href = `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(url)}`;
+
+        // Mostrar u ocultar el botón de compartir nativo
+        if (navigator.share) {
+            shareNative.style.display = 'flex';
+        } else {
+            shareNative.style.display = 'none';
+        }
+
+        shareModal.classList.add('active');
+        document.body.style.overflow = 'hidden'; // Bloquear scroll de fondo
+    });
+
+    // Cerrar modal de compartir
+    btnShareModalClose.addEventListener('click', closeShareModal);
+    shareModal.addEventListener('click', (e) => {
+        if (e.target === shareModal) {
+            closeShareModal();
+        }
+    });
+
+    function closeShareModal() {
+        shareModal.classList.remove('active');
+        if (!contactModal.classList.contains('active')) {
+            document.body.style.overflow = '';
+        }
+    }
+
+    // Copiar enlace en modal
+    shareCopy.addEventListener('click', () => {
+        navigator.clipboard.writeText(window.location.href)
+            .then(() => {
+                showToast('Enlace copiado al portapapeles', 'fa-copy');
+                closeShareModal();
+            })
+            .catch(() => {
+                showToast('No se pudo copiar el enlace', 'fa-circle-exclamation');
+            });
+    });
+
+    // Compartir nativo en móvil
+    shareNative.addEventListener('click', async () => {
         const shareData = {
             title: 'ARC VILLA INSUPERABLE',
             text: 'Conectate con nosotros en nuestras redes oficiales.',
             url: window.location.href
         };
-
-        if (navigator.share && navigator.canShare && navigator.canShare(shareData)) {
-            try {
-                await navigator.share(shareData);
-                showToast('¡Compartido con éxito!', 'fa-circle-check');
-            } catch (err) {
-                // Si el usuario cancela la acción, no mostramos error
-                if (err.name !== 'AbortError') {
-                    fallbackCopyUrl();
-                }
-            }
-        } else {
-            fallbackCopyUrl();
+        try {
+            await navigator.share(shareData);
+            showToast('¡Compartido con éxito!', 'fa-circle-check');
+            closeShareModal();
+        } catch (err) {
+            // Si el usuario cancela, no hacemos nada
         }
     });
-
-    function fallbackCopyUrl() {
-        navigator.clipboard.writeText(window.location.href)
-            .then(() => {
-                showToast('Enlace copiado al portapapeles', 'fa-copy');
-            })
-            .catch(() => {
-                showToast('No se pudo copiar el enlace', 'fa-circle-exclamation');
-            });
-    }
 
     // --- CONTROL DE MODAL DE CONTACTO ---
     btnContact.addEventListener('click', () => {
@@ -61,10 +100,18 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // Cerrar con la tecla Escape
+    function closeModal() {
+        contactModal.classList.remove('active');
+        if (!shareModal.classList.contains('active')) {
+            document.body.style.overflow = ''; // Restaurar scroll
+        }
+    }
+
+    // Cerrar modales con la tecla Escape
     document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && contactModal.classList.contains('active')) {
-            closeModal();
+        if (e.key === 'Escape') {
+            if (contactModal.classList.contains('active')) closeModal();
+            if (shareModal.classList.contains('active')) closeShareModal();
         }
     });
 

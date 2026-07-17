@@ -270,10 +270,49 @@
         </div>
     </div>
 
+    <!-- Modal de Compartir -->
+    <div class="modal-overlay" id="share-modal">
+        <div class="modal-card">
+            <button class="modal-close-btn" id="btn-share-modal-close" aria-label="Cerrar modal">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <h2 class="modal-title">Compartir Portafolio</h2>
+            <p class="modal-description">Elegí el medio por el cual querés compartir nuestro perfil:</p>
+            
+            <div class="share-grid">
+                <!-- WhatsApp -->
+                <a href="#" id="share-whatsapp" class="share-item whatsapp-share" target="_blank" rel="noopener noreferrer">
+                    <i class="fa-brands fa-whatsapp"></i>
+                    <span>WhatsApp</span>
+                </a>
+                <!-- Facebook -->
+                <a href="#" id="share-facebook" class="share-item facebook-share" target="_blank" rel="noopener noreferrer">
+                    <i class="fa-brands fa-facebook-f"></i>
+                    <span>Facebook</span>
+                </a>
+                <!-- Twitter/X -->
+                <a href="#" id="share-twitter" class="share-item twitter-share" target="_blank" rel="noopener noreferrer">
+                    <i class="fa-brands fa-x-twitter"></i>
+                    <span>Twitter / X</span>
+                </a>
+                <!-- Copiar enlace -->
+                <button id="share-copy" class="share-item copy-share">
+                    <i class="fa-solid fa-link"></i>
+                    <span>Copiar Enlace</span>
+                </button>
+                <!-- Compartir nativo (dispositivos móviles) -->
+                <button id="share-native" class="share-item native-share">
+                    <i class="fa-solid fa-share-nodes"></i>
+                    <span>Más opciones</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
     <!-- Notificaciones Toast flotantes -->
     <div class="toast-container" id="toast-container"></div>
 
     <!-- Scripts de funcionalidad -->
-    <script src="script.js?v=5"></script>
+    <script src="script.js?v=6"></script>
 </body>
 </html>
