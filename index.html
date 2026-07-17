@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ARC VILLA INSUPERABLE | Redes Sociales y Enlaces</title>
+    
+    <!-- Meta etiquetas SEO -->
+    <meta name="description" content="Portafolio oficial y enlaces de redes sociales de ARC VILLA INSUPERABLE. Mantente conectado con nosotros en Instagram, Facebook y TikTok.">
+    <meta name="author" content="ARC VILLA INSUPERABLE">
+    <meta property="og:title" content="ARC VILLA INSUPERABLE | Redes Sociales">
+    <meta property="og:description" content="Nuestros canales oficiales de comunicación y redes sociales. Súmate a la Mesa Política.">
+    <meta property="og:image" content="logo.jpg">
+    <meta property="og:type" content="website">
+
+    <!-- Google Fonts: Outfit e Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome para Iconos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
+    <!-- Estilos personalizados -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <!-- Globos de gradiente de fondo animados -->
+    <div class="bg-blobs">
+        <div class="blob blob-1" id="blob1"></div>
+        <div class="blob blob-2" id="blob2"></div>
+        <div class="blob blob-3" id="blob3"></div>
+    </div>
+
+    <!-- Contenedor Principal -->
+    <main class="portfolio-container" id="main-container">
+        
+        <!-- Tarjeta de Perfil -->
+        <header class="profile-card" id="profile-header">
+            <div class="avatar-wrapper">
+                <img src="logo.jpg" alt="Logo ARC VILLA INSUPERABLE" class="avatar-img" id="profile-logo">
+                <div class="avatar-pulse"></div>
+            </div>
+            
+            <h1 class="profile-name" id="profile-title">ARC VILLA INSUPERABLE</h1>
+            <span class="badge" id="profile-badge">Mesa Política</span>
+            
+            <p class="profile-bio" id="profile-tagline">
+                Conectando e impulsando ideas para nuestra comunidad en Villa Insuperable. Seguinos en nuestras redes oficiales y sumate al cambio.
+            </p>
+        </header>
+
+        <!-- Sección de Enlaces y Redes -->
+        <section class="links-section" id="social-links-section">
+            
+            <!-- Instagram -->
+            <a href="https://www.instagram.com/arcvilla_insuperable" target="_blank" rel="noopener noreferrer" class="link-card" id="link-instagram">
+                <div class="link-icon instagram-bg">
+                    <i class="fa-brands fa-instagram"></i>
+                </div>
+                <div class="link-info">
+                    <h2>Instagram</h2>
+                    <p>@arcvilla_insuperable</p>
+                </div>
+                <div class="link-arrow">
+                    <i class="fa-solid fa-chevron-right"></i>
+                </div>
+            </a>
+
+            <!-- Facebook -->
+            <a href="https://www.facebook.com/arcinsuperable1" target="_blank" rel="noopener noreferrer" class="link-card" id="link-facebook">
+                <div class="link-icon facebook-bg">
+                    <i class="fa-brands fa-facebook-f"></i>
+                </div>
+                <div class="link-info">
+                    <h2>Facebook</h2>
+                    <p>@arcinsuperable1</p>
+                </div>
+                <div class="link-arrow">
+                    <i class="fa-solid fa-chevron-right"></i>
+                </div>
+            </a>
+
+            <!-- TikTok -->
+            <a href="https://www.tiktok.com/@arcinsuperable1" target="_blank" rel="noopener noreferrer" class="link-card" id="link-tiktok">
+                <div class="link-icon tiktok-bg">
+                    <i class="fa-brands fa-tiktok"></i>
+                </div>
+                <div class="link-info">
+                    <h2>TikTok</h2>
+                    <p>@arcinsuperable1</p>
+                </div>
+                <div class="link-arrow">
+                    <i class="fa-solid fa-chevron-right"></i>
+                </div>
+            </a>
+
+        </section>
+
+        <!-- Botones de Acción Rápida -->
+        <div class="action-buttons-group">
+            <button class="action-btn" id="btn-share" title="Compartir Portafolio">
+                <i class="fa-solid fa-share-nodes"></i> Compartir
+            </button>
+            <button class="action-btn" id="btn-contact" title="Contacto Directo">
+                <i class="fa-solid fa-envelope"></i> Contacto
+            </button>
+        </div>
+
+        <!-- Footer -->
+        <footer class="portfolio-footer" id="footer-section">
+            <p>&copy; 2026 ARC VILLA INSUPERABLE. Todos los derechos reservados.</p>
+        </footer>
+
+    </main>
+
+    <!-- Modal de Contacto -->
+    <div class="modal-overlay" id="contact-modal">
+        <div class="modal-card">
+            <button class="modal-close-btn" id="btn-modal-close" aria-label="Cerrar modal">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <h2 class="modal-title">Contacto Directo</h2>
+            <p class="modal-description">Dejanos tu mensaje o conectate directamente con nosotros.</p>
+            
+            <div class="quick-contact-options">
+                <!-- Enlace rápido a WhatsApp (modificable por el usuario) -->
+                <a href="https://wa.me/5491100000000?text=Hola,%20quiero%20más%20información%20sobre%20ARC%20Villa%20Insuperable" target="_blank" rel="noopener noreferrer" class="quick-contact-item whatsapp-item" id="contact-whatsapp">
+                    <i class="fa-brands fa-whatsapp"></i>
+                    <span>Escribinos por WhatsApp</span>
+                </a>
+            </div>
+
+            <hr class="modal-divider">
+
+            <!-- Formulario interactivo simulado -->
+            <form class="contact-form" id="contact-form-element">
+                <div class="form-group">
+                    <label for="form-name">Nombre</label>
+                    <input type="text" id="form-name" placeholder="Tu nombre" required>
+                </div>
+                <div class="form-group">
+                    <label for="form-email">Correo Electrónico</label>
+                    <input type="email" id="form-email" placeholder="tu@correo.com" required>
+                </div>
+                <div class="form-group">
+                    <label for="form-message">Mensaje</label>
+                    <textarea id="form-message" rows="4" placeholder="¿En qué podemos ayudarte?" required></textarea>
+                </div>
+                <button type="submit" class="submit-btn" id="btn-form-submit">Enviar Mensaje</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Notificaciones Toast flotantes -->
+    <div class="toast-container" id="toast-container"></div>
+
+    <!-- Scripts de funcionalidad -->
+    <script src="script.js"></script>
+</body>
+</html>
