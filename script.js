@@ -514,14 +514,21 @@ document.addEventListener('DOMContentLoaded', () => {
                 sidebarOverlay.classList.remove('active');
             }
             
-            // Smooth Scroll manual
+            // Smooth Scroll manual con offset para el menú sticky
             const targetId = link.getAttribute('href');
             const targetSection = document.querySelector(targetId);
             if (targetSection) {
                 e.preventDefault();
-                targetSection.scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'start'
+                const isMobile = window.innerWidth < 1024;
+                const offset = isMobile ? 85 : 40;
+                const bodyRect = document.body.getBoundingClientRect().top;
+                const elementRect = targetSection.getBoundingClientRect().top;
+                const elementPosition = elementRect - bodyRect;
+                const offsetPosition = elementPosition - offset;
+                
+                window.scrollTo({
+                    top: offsetPosition,
+                    behavior: 'smooth'
                 });
             }
         });
