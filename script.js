@@ -134,21 +134,5 @@ document.addEventListener('DOMContentLoaded', () => {
             if (blob2) blob2.style.transform = `translate(${x * -40}px, ${y * -40}px)`;
             if (blob3) blob3.style.transform = `translate(${x * 30}px, ${y * 30}px)`;
         });
-        
-        // Inclinación 3D para la tarjeta de perfil
-        mainContainer.style.transition = 'transform 0.1s ease';
-        
-        mainContainer.addEventListener('mousemove', (e) => {
-            const box = mainContainer.getBoundingClientRect();
-            const calcX = -(e.clientY - box.y - (box.height / 2)) / 50; // Inclinación Y
-            const calcY = (e.clientX - box.x - (box.width / 2)) / 50;  // Inclinación X
-            
-            mainContainer.style.transform = `perspective(1000px) rotateX(${calcX}deg) rotateY(${calcY}deg)`;
-        });
-        
-        mainContainer.addEventListener('mouseleave', () => {
-            mainContainer.style.transition = 'transform 0.5s ease';
-            mainContainer.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg)';
-        });
     }
 });
