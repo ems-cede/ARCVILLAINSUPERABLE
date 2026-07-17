@@ -309,6 +309,14 @@ body {
     box-shadow: 0 4px 15px rgba(255, 255, 255, 0.08);
 }
 
+.x-icon-img {
+    width: 20px;
+    height: 20px;
+    object-fit: contain;
+    filter: invert(1); /* Invertir color negro del logo a blanco para fondo oscuro */
+    transition: var(--transition-smooth);
+}
+
 /* Info del enlace */
 .link-info {
     flex-grow: 1;
@@ -527,6 +535,14 @@ body {
 
 .share-item i {
     font-size: 1.15rem;
+}
+
+.x-icon-img-share {
+    width: 18px;
+    height: 18px;
+    object-fit: contain;
+    filter: invert(1); /* Invertir color negro del logo a blanco */
+    transition: var(--transition-smooth);
 }
 
 .whatsapp-share:hover {
