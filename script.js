@@ -514,13 +514,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 sidebarOverlay.classList.remove('active');
             }
             
-            // Smooth Scroll manual con offset para el menú sticky
+            // Smooth Scroll manual con offset cómodo
             const targetId = link.getAttribute('href');
             const targetSection = document.querySelector(targetId);
             if (targetSection) {
                 e.preventDefault();
-                const isMobile = window.innerWidth < 1024;
-                const offset = isMobile ? 85 : 40;
+                const offset = 30;
                 const bodyRect = document.body.getBoundingClientRect().top;
                 const elementRect = targetSection.getBoundingClientRect().top;
                 const elementPosition = elementRect - bodyRect;
