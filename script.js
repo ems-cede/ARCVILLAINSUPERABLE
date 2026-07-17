@@ -115,11 +115,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    function closeModal() {
-        contactModal.classList.remove('active');
-        document.body.style.overflow = ''; // Restaurar scroll
-    }
-
     // --- ENVÍO DE FORMULARIO DE CONTACTO ---
     contactForm.addEventListener('submit', (e) => {
         e.preventDefault();
@@ -164,5 +159,51 @@ document.addEventListener('DOMContentLoaded', () => {
             }, 400);
         }, 3000);
     }
+
+    // --- SISTEMA DE GALERÍA LIGHTBOX ---
+    const lightboxModal = document.getElementById('lightbox-modal');
+    const lightboxImg = document.getElementById('lightbox-img');
+    const images = ['img1.jpg', 'img2.jpg', 'img3.jpg', 'img4.jpg', 'img5.jpg'];
+    let currentImageIndex = 0;
+
+    window.openLightbox = (index) => {
+        currentImageIndex = index;
+        lightboxImg.src = images[currentImageIndex];
+        lightboxModal.classList.add('active');
+        document.body.style.overflow = 'hidden'; // Bloquear scroll de fondo
+    };
+
+    window.closeLightbox = () => {
+        lightboxModal.classList.remove('active');
+        if (!contactModal.classList.contains('active') && !shareModal.classList.contains('active')) {
+            document.body.style.overflow = ''; // Restaurar scroll
+        }
+    };
+
+    window.prevLightboxImage = () => {
+        currentImageIndex = (currentImageIndex - 1 + images.length) % images.length;
+        lightboxImg.src = images[currentImageIndex];
+    };
+
+    window.nextLightboxImage = () => {
+        currentImageIndex = (currentImageIndex + 1) % images.length;
+        lightboxImg.src = images[currentImageIndex];
+    };
+
+    // Cerrar al hacer clic en el fondo oscuro
+    lightboxModal.addEventListener('click', (e) => {
+        if (e.target === lightboxModal || e.target.classList.contains('lightbox-content')) {
+            window.closeLightbox();
+        }
+    });
+
+    // Navegación con teclado para la galería
+    document.addEventListener('keydown', (e) => {
+        if (lightboxModal.classList.contains('active')) {
+            if (e.key === 'ArrowLeft') window.prevLightboxImage();
+            if (e.key === 'ArrowRight') window.nextLightboxImage();
+            if (e.key === 'Escape') window.closeLightbox();
+        }
+    });
 
 });

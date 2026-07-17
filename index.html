@@ -226,6 +226,49 @@
             </div>
         </section>
 
+        <!-- Sección Galería de Imágenes -->
+        <section class="gallery-section" id="gallery-images-section">
+            <h2 class="gallery-title"><i class="fa-solid fa-images"></i> Galería de Imágenes</h2>
+            
+            <div class="gallery-mosaic">
+                <div class="gallery-item item-1" onclick="openLightbox(0)">
+                    <img src="img1.jpg" alt="Actividad de ARC Villa Insuperable 1" class="gallery-img">
+                    <div class="gallery-item-overlay">
+                        <i class="fa-solid fa-magnifying-glass-plus"></i>
+                    </div>
+                </div>
+                
+                <div class="gallery-item item-2" onclick="openLightbox(1)">
+                    <img src="img2.jpg" alt="Actividad de ARC Villa Insuperable 2" class="gallery-img">
+                    <div class="gallery-item-overlay">
+                        <i class="fa-solid fa-magnifying-glass-plus"></i>
+                    </div>
+                </div>
+                
+                <div class="gallery-item item-3" onclick="openLightbox(2)">
+                    <img src="img3.jpg" alt="Actividad de ARC Villa Insuperable 3" class="gallery-img">
+                    <div class="gallery-item-overlay">
+                        <i class="fa-solid fa-magnifying-glass-plus"></i>
+                    </div>
+                </div>
+                
+                <div class="gallery-item item-4" onclick="openLightbox(3)">
+                    <img src="img4.jpg" alt="Actividad de ARC Villa Insuperable 4" class="gallery-img">
+                    <div class="gallery-item-overlay">
+                        <i class="fa-solid fa-magnifying-glass-plus"></i>
+                    </div>
+                </div>
+                
+                <div class="gallery-item item-5" onclick="openLightbox(4)">
+                    <img src="img5.jpg" alt="Actividad de ARC Villa Insuperable 5" class="gallery-img">
+                    <div class="gallery-item-overlay">
+                        <i class="fa-solid fa-magnifying-glass-plus"></i>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
 
 
 
@@ -323,10 +366,26 @@
         </div>
     </div>
 
+    <!-- Lightbox Modal para Galería -->
+    <div class="lightbox-overlay" id="lightbox-modal">
+        <button class="lightbox-close-btn" onclick="closeLightbox()" aria-label="Cerrar vista de imagen">
+            <i class="fa-solid fa-xmark"></i>
+        </button>
+        <button class="lightbox-nav-btn prev-btn" onclick="prevLightboxImage()" aria-label="Imagen anterior">
+            <i class="fa-solid fa-chevron-left"></i>
+        </button>
+        <div class="lightbox-content">
+            <img src="" alt="Vista ampliada" id="lightbox-img">
+        </div>
+        <button class="lightbox-nav-btn next-btn" onclick="nextLightboxImage()" aria-label="Siguiente imagen">
+            <i class="fa-solid fa-chevron-right"></i>
+        </button>
+    </div>
+
     <!-- Notificaciones Toast flotantes -->
     <div class="toast-container" id="toast-container"></div>
 
     <!-- Scripts de funcionalidad -->
-    <script src="script.js?v=8"></script>
+    <script src="script.js?v=9"></script>
 </body>
 </html>
