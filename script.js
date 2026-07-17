@@ -359,7 +359,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const topicTitles = {
             peronismo: "📖 Historia del Peronismo",
             malvinas: "🇦🇷 Soberanía Malvinas",
-            matanza: "🏢 La Matanza y Fernando Espinoza",
+            matanza: "🏢 La Matanza",
             arc: "👥 ¿Qué es ARC?",
             actividades: "📅 Actividades del Municipio"
         };
@@ -471,7 +471,7 @@ document.addEventListener('DOMContentLoaded', () => {
         sugDiv.innerHTML = `
             <button class="suggestion-btn" onclick="sendSuggestion('peronismo')">📖 Historia del Peronismo</button>
             <button class="suggestion-btn" onclick="sendSuggestion('malvinas')">🇦🇷 Soberanía Malvinas</button>
-            <button class="suggestion-btn" onclick="sendSuggestion('matanza')">🏢 La Matanza y Fernando Espinoza</button>
+            <button class="suggestion-btn" onclick="sendSuggestion('matanza')">🏢 La Matanza</button>
             <button class="suggestion-btn" onclick="sendSuggestion('arc')">👥 ¿Qué es ARC?</button>
             <button class="suggestion-btn" onclick="sendSuggestion('actividades')">📅 Actividades del Municipio</button>
         `;
