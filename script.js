@@ -483,4 +483,79 @@ document.addEventListener('DOMContentLoaded', () => {
         botChatBody.scrollTop = botChatBody.scrollHeight;
     }
 
+    // --- SCROLL SPY Y CONTROL DE MENÚ MÓVIL ---
+    const mobileMenuToggle = document.getElementById('btn-mobile-menu-toggle');
+    const stickySidebar = document.getElementById('sticky-sidebar');
+    const sidebarOverlay = document.getElementById('sidebar-overlay');
+    const navLinks = document.querySelectorAll('.nav-link');
+    
+    // Toggle menú móvil
+    if (mobileMenuToggle && stickySidebar && sidebarOverlay) {
+        mobileMenuToggle.addEventListener('click', () => {
+            stickySidebar.classList.toggle('active');
+            sidebarOverlay.classList.toggle('active');
+        });
+        
+        sidebarOverlay.addEventListener('click', () => {
+            stickySidebar.classList.remove('active');
+            sidebarOverlay.classList.remove('active');
+        });
+    }
+    
+    // Cerrar menú al hacer clic en los enlaces y manejar scroll spy
+    navLinks.forEach(link => {
+        link.addEventListener('click', (e) => {
+            // Cerrar menú móvil
+            if (stickySidebar && sidebarOverlay) {
+                stickySidebar.classList.remove('active');
+                sidebarOverlay.classList.remove('active');
+            }
+            
+            // Smooth Scroll manual
+            const targetId = link.getAttribute('href');
+            const targetSection = document.querySelector(targetId);
+            if (targetSection) {
+                e.preventDefault();
+                targetSection.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }
+        });
+    });
+
+    // Scroll Spy para activar enlaces en navegación
+    const sections = [
+        document.getElementById('profile-header'),
+        document.getElementById('about-us-section'),
+        document.getElementById('social-links-section'),
+        document.getElementById('events-highlights-section'),
+        document.getElementById('malvinas-tribute-section'),
+        document.getElementById('pilares-our-section'),
+        document.getElementById('mision-our-section'),
+        document.getElementById('gallery-images-section')
+    ].filter(el => el !== null);
+
+    window.addEventListener('scroll', () => {
+        let currentSectionId = '';
+        const scrollPosition = window.scrollY + 150; // Compensación de offset
+
+        sections.forEach(sec => {
+            const secTop = sec.offsetTop;
+            const secHeight = sec.offsetHeight;
+            if (scrollPosition >= secTop && scrollPosition < (secTop + secHeight)) {
+                currentSectionId = sec.getAttribute('id');
+            }
+        });
+
+        if (currentSectionId) {
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${currentSectionId}`) {
+                    link.classList.add('active');
+                }
+            });
+        }
+    });
+
 });

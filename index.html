@@ -33,8 +33,39 @@
         <div class="blob blob-3" id="blob3"></div>
     </div>
 
-    <!-- Contenedor Principal -->
-    <main class="portfolio-container" id="main-container">
+    <!-- Botón Toggle de Menú Móvil -->
+    <button class="mobile-menu-toggle" id="btn-mobile-menu-toggle" aria-label="Abrir menú de navegación">
+        <i class="fa-solid fa-bars"></i>
+    </button>
+
+    <!-- Overlay de menú móvil -->
+    <div class="sidebar-overlay" id="sidebar-overlay"></div>
+    <div class="page-layout-wrapper">
+        
+        <!-- Menú Sticky Lateral Izquierdo -->
+        <aside class="sticky-sidebar" id="sticky-sidebar">
+            <div class="sidebar-header">
+                <img src="logo.jpg" alt="Logo ARC" class="sidebar-logo">
+                <div class="sidebar-header-text">
+                    <span class="sidebar-title">ARC VILLA</span>
+                    <span class="sidebar-subtitle">INSUPERABLE</span>
+                </div>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <a href="#profile-header" class="nav-link active"><i class="fa-solid fa-house"></i> <span>Inicio</span></a>
+                <a href="#about-us-section" class="nav-link"><i class="fa-solid fa-id-card"></i> <span>Identidad</span></a>
+                <a href="#social-links-section" class="nav-link"><i class="fa-solid fa-share-nodes"></i> <span>Redes Sociales</span></a>
+                <a href="#events-highlights-section" class="nav-link"><i class="fa-solid fa-calendar-days"></i> <span>Eventos</span></a>
+                <a href="#malvinas-tribute-section" class="nav-link"><i class="fa-solid fa-flag"></i> <span>Malvinas Argentinas</span></a>
+                <a href="#pilares-our-section" class="nav-link"><i class="fa-solid fa-landmark"></i> <span>Nuestros Pilares</span></a>
+                <a href="#mision-our-section" class="nav-link"><i class="fa-solid fa-bullseye"></i> <span>Nuestra Misión</span></a>
+                <a href="#gallery-images-section" class="nav-link"><i class="fa-solid fa-images"></i> <span>Galería</span></a>
+            </nav>
+        </aside>
+
+        <!-- Contenedor Principal (Derecha / Ancho Completo) -->
+        <main class="portfolio-container" id="main-container">
         
         <!-- Tarjeta de Perfil -->
         <header class="profile-card" id="profile-header">
@@ -198,19 +229,21 @@
             <div class="yellow-glow-card" id="pillars-card">
                 <h2 class="yellow-glow-card-title"><i class="fa-solid fa-star"></i> Nuestros Pilares</h2>
                 
-                <div class="pilar-item">
-                    <h3>Organización Popular</h3>
-                    <p>Trabajamos desde la base, con el pueblo como centro.</p>
-                </div>
-                
-                <div class="pilar-item">
-                    <h3>Fidelidad</h3>
-                    <p>Estamos con nuestra comunidad y con nuestra patria.</p>
-                </div>
-                
-                <div class="pilar-item">
-                    <h3>Transformación</h3>
-                    <p>La política sirve para cambiar las cosas.</p>
+                <div class="pilar-items-grid">
+                    <div class="pilar-item">
+                        <h3>Organización Popular</h3>
+                        <p>Trabajamos desde la base, con el pueblo como centro.</p>
+                    </div>
+                    
+                    <div class="pilar-item">
+                        <h3>Fidelidad</h3>
+                        <p>Estamos con nuestra comunidad y con nuestra patria.</p>
+                    </div>
+                    
+                    <div class="pilar-item">
+                        <h3>Transformación</h3>
+                        <p>La política sirve para cambiar las cosas.</p>
+                    </div>
                 </div>
             </div>
         </section>
@@ -326,6 +359,7 @@
         </footer>
 
     </main>
+</div>
 
     <!-- Modal de Contacto -->
     <div class="modal-overlay" id="contact-modal">
@@ -478,6 +512,6 @@
     <div class="toast-container" id="toast-container"></div>
 
     <!-- Scripts de funcionalidad -->
-    <script src="script.js?v=13"></script>
+    <script src="script.js?v=14"></script>
 </body>
 </html>
