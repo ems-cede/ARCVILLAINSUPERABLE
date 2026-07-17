@@ -729,6 +729,91 @@ body {
 }
 
 /* ==========================================================================
+   Sección Misión (Brillo Amarillo Expandido)
+   ========================================================================== */
+.mision-section {
+    width: 100%;
+}
+
+.mision-subtitle {
+    font-family: 'Outfit', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--accent-gold);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 14px;
+}
+
+.mision-quote {
+    background: rgba(255, 255, 255, 0.02);
+    border-left: 3px solid var(--accent-gold);
+    padding: 14px;
+    font-style: italic;
+    font-size: 0.88rem;
+    line-height: 1.5;
+    color: #f1f5f9;
+    margin-bottom: 18px;
+    border-radius: 0 10px 10px 0;
+    box-shadow: inset 5px 0 15px rgba(242, 184, 7, 0.03);
+}
+
+.mision-description {
+    font-size: 0.88rem;
+    line-height: 1.6;
+    color: var(--text-secondary);
+    margin-bottom: 22px;
+}
+
+.mision-items {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.mision-item {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 14px;
+    padding: 16px;
+    transition: var(--transition-smooth);
+}
+
+.mision-item:hover {
+    background: rgba(255, 255, 255, 0.04);
+    border-color: rgba(242, 184, 7, 0.25);
+    transform: translateY(-2px);
+}
+
+.mision-item-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 6px;
+}
+
+.mision-icon {
+    font-size: 1.1rem;
+    color: var(--accent-gold);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.mision-item h4 {
+    font-family: 'Outfit', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: #ffffff;
+}
+
+.mision-item p {
+    font-size: 0.85rem;
+    line-height: 1.5;
+    color: var(--text-secondary);
+}
+
+/* ==========================================================================
    Sección de Homenaje a Malvinas
    ========================================================================== */
 .malvinas-section {
