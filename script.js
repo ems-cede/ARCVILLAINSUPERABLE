@@ -556,6 +556,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const sections = [
         document.getElementById('profile-header'),
         document.getElementById('about-us-section'),
+        document.getElementById('video-tour-section'),
         document.getElementById('social-links-section'),
         document.getElementById('events-highlights-section'),
         document.getElementById('malvinas-tribute-section'),
