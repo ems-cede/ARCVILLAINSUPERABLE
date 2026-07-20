@@ -239,28 +239,32 @@ document.addEventListener('DOMContentLoaded', () => {
                     "description": "Atención médica general, pediatría, odontología y vacunación gratuita del calendario oficial en los stands móviles del municipio.",
                     "dayOfWeek": 3,
                     "time": "09:00 a 13:00 hs",
-                    "location": "Plaza Distrital de Villa Insuperable"
+                    "location": "Plaza Distrital de Villa Insuperable",
+                    "link": "https://www.instagram.com/municipiodelamatanza/"
                 },
                 {
                     "title": "Taller Vecinal de Apoyo Escolar",
                     "description": "Espacio de aprendizaje, tareas y lectura recreativa para chicos y chicas del nivel primario en nuestro espacio comunitario.",
                     "dayOfWeek": 5,
                     "time": "15:00 a 17:00 hs",
-                    "location": "Sede ARC Villa Insuperable"
+                    "location": "Sede ARC Villa Insuperable",
+                    "link": "https://wa.me/5491164003520?text=Hola!%20Quiero%20más%20información%20sobre%20el%20Apoyo%20Escolar."
                 },
                 {
                     "title": "Jornada de Eco-Canje y Reciclaje",
                     "description": "Traé tus plásticos, cartones y vidrios limpios y canjealos por plantines o bolsas ecológicas para cuidar el medio ambiente entre todos.",
                     "dayOfWeek": 6,
                     "time": "10:00 a 14:00 hs",
-                    "location": "Plaza Principal de Lomas del Mirador"
+                    "location": "Plaza Principal de Lomas del Mirador",
+                    "link": "https://www.instagram.com/municipiodelamatanza/"
                 },
                 {
                     "title": "Feria de la Economía Popular y Emprendedores",
                     "description": "Venta de productos artesanales, panificados y verduras frescas directas del productor al vecino a precios accesibles.",
                     "dayOfWeek": 6,
                     "time": "16:00 a 20:00 hs",
-                    "location": "Polideportivo Municipal de la zona"
+                    "location": "Polideportivo Municipal de la zona",
+                    "link": "https://www.instagram.com/municipiodelamatanza/"
                 }
             ];
         });
@@ -290,6 +294,16 @@ document.addEventListener('DOMContentLoaded', () => {
         let html = `<p><strong>Operativos y actividades programadas esta semana en La Matanza:</strong></p>`;
         municipalActivities.forEach(act => {
             const dateStr = getNextDateOfDay(act.dayOfWeek);
+            let linkHTML = '';
+            if (act.link) {
+                linkHTML = `
+                    <div style="margin-top: 10px; text-align: right;">
+                        <a href="${act.link}" target="_blank" rel="noopener noreferrer" style="display: inline-flex; align-items: center; gap: 6px; padding: 6px 12px; background: var(--accent-gold); color: #040814; font-size: 0.72rem; font-weight: 700; border-radius: 6px; text-decoration: none; transition: 0.2s;">
+                            <span>Ver Más / Info</span> <i class="fa-solid fa-up-right-from-square" style="font-size: 0.7rem; color: #040814;"></i>
+                        </a>
+                    </div>
+                `;
+            }
             html += `
                 <div style="margin-bottom: 12px; padding: 12px; background: rgba(255,255,255,0.03); border-left: 3px solid #00a8cc; border-radius: 8px; font-family:'Outfit',sans-serif;">
                     <h4 style="margin: 0 0 6px 0; color: #ffffff; font-size: 0.88rem; font-weight: 600;">${act.title}</h4>
@@ -299,6 +313,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         <span><i class="fa-solid fa-clock"></i> <strong>Horario:</strong> ${act.time}</span>
                         <span><i class="fa-solid fa-location-dot"></i> <strong>Lugar:</strong> ${act.location}</span>
                     </div>
+                    ${linkHTML}
                 </div>
             `;
         });
