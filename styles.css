@@ -1006,35 +1006,7 @@ body {
     color: var(--text-secondary);
 }
 
-/* ==========================================================================
-   Sección Video Explicativo
-   ========================================================================== */
-.video-section {
-    width: 100%;
-}
 
-.video-card {
-    padding: 24px;
-}
-
-.video-wrapper {
-    width: 100%;
-    position: relative;
-    border-radius: 16px;
-    overflow: hidden;
-    border: 1.5px solid rgba(255, 255, 255, 0.08);
-    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
-    background: #000000;
-    line-height: 0;
-}
-
-.main-video-player {
-    width: 100%;
-    height: auto;
-    max-height: 480px;
-    object-fit: cover;
-    display: block;
-}
 
 /* ==========================================================================
    Sección Nuestros Pilares (Tarjeta con Brillo Amarillo)

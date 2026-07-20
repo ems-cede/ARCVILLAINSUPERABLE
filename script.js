@@ -556,7 +556,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const sections = [
         document.getElementById('profile-header'),
         document.getElementById('about-us-section'),
-        document.getElementById('video-tour-section'),
         document.getElementById('social-links-section'),
         document.getElementById('events-highlights-section'),
         document.getElementById('malvinas-tribute-section'),
@@ -632,52 +631,6 @@ document.addEventListener('DOMContentLoaded', () => {
         return top;
     }
 
-    // --- VOZ DE REFERENCIA PARA EL VIDEO ---
-    const mainVideoPlayer = document.getElementById('main-video-player');
-    let speechUtterance = null;
 
-    if (mainVideoPlayer && 'speechSynthesis' in window) {
-        const textToSpeak = "Bienvenido al recorrido de la página de A R C Villa Insuperable. En esta plataforma podés conocer nuestra identidad, nuestras redes oficiales, enterarte de los próximos operativos municipales de La Matanza en tiempo real, rendir homenaje a los héroes de Malvinas y conversar con nuestro asistente virtual CompañerIA. Te invitamos a sumarte a nuestra comunidad.";
-        
-        mainVideoPlayer.addEventListener('play', () => {
-            if (!speechUtterance) {
-                speechUtterance = new SpeechSynthesisUtterance(textToSpeak);
-                speechUtterance.lang = 'es-AR';
-                speechUtterance.rate = 0.95;
-                
-                const voices = window.speechSynthesis.getVoices();
-                const esVoice = voices.find(v => v.lang.startsWith('es-AR') || v.lang.startsWith('es'));
-                if (esVoice) {
-                    speechUtterance.voice = esVoice;
-                }
-                
-                speechUtterance.onend = () => {
-                    speechUtterance = null;
-                };
-            }
-
-            if (window.speechSynthesis.paused) {
-                window.speechSynthesis.resume();
-            } else {
-                window.speechSynthesis.cancel();
-                window.speechSynthesis.speak(speechUtterance);
-            }
-        });
-
-        mainVideoPlayer.addEventListener('pause', () => {
-            if (window.speechSynthesis.speaking && !window.speechSynthesis.paused) {
-                window.speechSynthesis.pause();
-            }
-        });
-
-        mainVideoPlayer.addEventListener('ended', () => {
-            window.speechSynthesis.cancel();
-            speechUtterance = null;
-        });
-
-        window.addEventListener('beforeunload', () => {
-            window.speechSynthesis.cancel();
-        });
-    }
 
 });
