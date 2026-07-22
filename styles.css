@@ -1006,6 +1006,71 @@ body {
     color: var(--text-secondary);
 }
 
+/* ==========================================================================
+   Sección Video Reparación de Luminarias
+   ========================================================================== */
+.video-section {
+    width: 100%;
+}
+
+.luminarias-card {
+    background: linear-gradient(135deg, rgba(13, 27, 61, 0.6) 0%, rgba(30, 20, 5, 0.6) 100%);
+    border: 1.5px solid rgba(242, 184, 7, 0.25);
+    border-radius: 20px;
+    padding: 28px;
+    position: relative;
+    overflow: hidden;
+    animation: luminariasGlow 4s infinite alternate ease-in-out;
+}
+
+@keyframes luminariasGlow {
+    0% {
+        box-shadow: 0 0 18px rgba(242, 184, 7, 0.15), inset 0 0 10px rgba(242, 184, 7, 0.05);
+        border-color: rgba(242, 184, 7, 0.2);
+    }
+    100% {
+        box-shadow: 0 0 35px rgba(242, 184, 7, 0.4), inset 0 0 18px rgba(242, 184, 7, 0.12);
+        border-color: rgba(242, 184, 7, 0.5);
+    }
+}
+
+.luminarias-badge {
+    background: rgba(242, 184, 7, 0.15);
+    border-color: rgba(242, 184, 7, 0.35);
+    margin-bottom: 12px;
+}
+
+.luminarias-title {
+    font-family: 'Outfit', sans-serif;
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: #ffffff;
+    margin-bottom: 10px;
+}
+
+.luminarias-desc {
+    font-size: 0.9rem;
+    line-height: 1.6;
+    color: var(--text-secondary);
+    margin-bottom: 22px;
+}
+
+.luminarias-video-wrapper {
+    width: 100%;
+    border-radius: 14px;
+    overflow: hidden;
+    border: 2px solid rgba(242, 184, 7, 0.3);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 0 0 20px rgba(242, 184, 7, 0.1);
+    background: #000;
+    line-height: 0;
+}
+
+.luminarias-player {
+    width: 100%;
+    height: auto;
+    max-height: 500px;
+    display: block;
+}
 
 
 /* ==========================================================================
